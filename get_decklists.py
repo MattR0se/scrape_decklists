@@ -12,6 +12,9 @@ from time import sleep
 from os import path, mkdir
 
 
+import json # for testing only
+
+
 def get_html(url):
     # requests url and returns a bs4 html object
     raw_html = simple_get(url)
@@ -115,3 +118,5 @@ def main(date):
 if __name__ == '__main__':
     lists = main('2019-08')
 
+    with open('decklists_modern.json', 'w') as f:
+        json.dump(lists['Modern'], f)

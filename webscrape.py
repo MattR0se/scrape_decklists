@@ -5,7 +5,7 @@ Created on Fri Sep 13 21:11:46 2019
 @author: Christian
 
 source:
-https://realpython.com/python-web-scraping-practical-introduction/)
+https://realpython.com/python-web-scraping-practical-introduction/
 """
 from requests import get
 from requests.exceptions import RequestException
