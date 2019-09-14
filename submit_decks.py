@@ -17,11 +17,6 @@ def main(event_form_data, decklists):
     url = 'https://www.mtgtop8.com/submit_event'
     driver.get(url)
     
-    # load decklists
-    # TODO: remove after testing (access decklists as an argument for main())
-    #with open('decklists_modern.json', 'r') as f:
-    #    decklists = json.load(f)
-    
     for key, value in event_form_data.items():
         form = driver.find_element_by_name(key)
         try:
