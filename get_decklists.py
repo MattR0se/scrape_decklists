@@ -36,7 +36,7 @@ def extract_decks(format_, urls, deck_dict):
     
     for url in deck_urls:
         print(f'reading {url}...')
-        sleep(1)
+        sleep(0.5)
         deck = get_html(f'https://www.trader-online.de/turniere/Decks/{url}')
         
         dname = deck.select('head')[0]['data-deckname']
