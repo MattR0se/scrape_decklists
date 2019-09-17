@@ -6,11 +6,16 @@ Created on Sat Sep 14 20:11:01 2019
 """
 
 import get_decklists, submit_decks
+from calendar import month_name
 
 
 # get lists from trader website
-decklists = get_decklists.main('2019-08')
+decklists = get_decklists.main('2019-09')
 
+# get date from decklist
+date_string = decklists['Modern'][0]['Date']
+year, month, day = date_string.split('-')
+month = month_name[int(month)]
 
 # fill mtgtop8 forms
 # TODO: read this also from website
@@ -19,10 +24,10 @@ event_form_data = {
                 'event_title': 'Traderliga',
                 'event_place': 'Dülmen',
                 'event_format': 'Modern',
-                'event_day': '25',
-                'event_month': 'August',
-                'event_year': '2019',
-                'event_players': '68',
+                'event_day': day,
+                'event_month': month,
+                'event_year': year,
+                'event_players': '60',
                 'event_link': 'https://www.trader-online.de',
                 'event_email': ''
                 },
@@ -30,10 +35,10 @@ event_form_data = {
                 'event_title': 'Traderliga',
                 'event_place': 'Dülmen',
                 'event_format': 'Legacy',
-                'event_day': '25',
-                'event_month': 'August',
-                'event_year': '2019',
-                'event_players': '44',
+                'event_day': day,
+                'event_month': month,
+                'event_year': year,
+                'event_players': '25',
                 'event_link': 'https://www.trader-online.de',
                 'event_email': ''
                 },
@@ -41,14 +46,14 @@ event_form_data = {
                 'event_title': 'Traderliga',
                 'event_place': 'Dülmen',
                 'event_format': 'Standard',
-                'event_day': '25',
-                'event_month': 'August',
-                'event_year': '2019',
-                'event_players': '20',
+                'event_day': day,
+                'event_month': month,
+                'event_year': year,
+                'event_players': '16',
                 'event_link': 'https://www.trader-online.de',
                 'event_email': ''
                 }
         }
          
-FORMAT = 'Standard'
+FORMAT = 'Modern'
 submit_decks.main(event_form_data[FORMAT], decklists[FORMAT])
