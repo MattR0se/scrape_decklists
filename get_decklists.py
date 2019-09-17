@@ -10,6 +10,10 @@ from bs4 import BeautifulSoup
 import numpy as np
 from time import sleep
 from os import path, mkdir
+import traceback
+
+
+import json # for testing only
 
 
 def get_html(url):
@@ -71,6 +75,7 @@ def extract_decks(format_, urls, deck_dict):
                 'Title': dname, 
                 'Player': f'{dfirstname} {dlastname}', 
                 'Rank': drank,
+                'Date': date,
                 'Cards': decklist_s})
 
         # export to txt files
@@ -106,13 +111,16 @@ def main(date):
             }
     
     for f in ['Modern', 'Standard', 'Legacy']:
-        extract_decks(f, url_lib[f], decklists)
-    
+        try:
+            extract_decks(f, url_lib[f], decklists)
+        except Exception:
+            traceback.print_exc()
     return decklists
 
 
 
 if __name__ == '__main__':
     lists = main('2019-08')
-    
-    
+
+    with open('decklists_modern.json', 'w') as f:
+        json.dump(lists['Modern'], f)
