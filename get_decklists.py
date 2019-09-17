@@ -45,6 +45,7 @@ def extract_decks(format_, urls, deck_dict):
         dlastname = deck.select('head')[0]['data-lastname']
         drank = int(deck.select('head')[0]['data-rank'])
         date = deck.select('head')[0]['data-date']
+        dformat = deck.select('head')[0]['data-format']
         
         dlist = deck.select('td')[5]
         card_names = []
@@ -83,7 +84,7 @@ def extract_decks(format_, urls, deck_dict):
         folder = path.join('exported_lists', f'{date}')
         if not path.exists(folder):
             mkdir(folder)
-        filename = f'{drank}_{dfirstname}_{dlastname}.txt'
+        filename = f'{dformat}_{drank}_{dfirstname}_{dlastname}.txt'
         with open(path.join(folder, filename), 'w') as f:
             f.write(decklist_s)
         
