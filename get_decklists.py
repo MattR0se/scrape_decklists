@@ -55,11 +55,13 @@ def extract_decks(format_, urls, deck_dict):
                 # skip title
                 continue
             if i % 2 == 0:
+                # card quantity
                 try:
-                    card_quantities.append(tag.text[0])
+                    card_quantities.append(tag.text[:2])
                 except ValueError:
                     card_quantities.append(np.nan)
             else:
+                # card name
                 card_names.append(tag.text.replace('\n', ''))
         
         # format deck string for mtgtop8 form
