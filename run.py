@@ -18,7 +18,7 @@ year, month, day = date_string.split('-')
 month = month_name[int(month)]
 
 # fill mtgtop8 forms
-# TODO: read this also from website
+# TODO: read this also from website?
 event_form_data = {
         'Modern': {
                 'event_title': 'Traderliga',
@@ -54,6 +54,7 @@ event_form_data = {
                 'event_email': ''
                 }
         }
-         
-FORMAT = 'Modern'
-submit_decks.main(event_form_data[FORMAT], decklists[FORMAT])
+
+
+for format_, data in event_form_data.items():
+    submit_decks.main(data, decklists[format_])
